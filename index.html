@@ -257,6 +257,7 @@
   }
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-aside { position: static; top: auto; }
   }
   .about-aside {
     position: sticky;
@@ -361,6 +362,10 @@
     position: sticky;
     top: 120px;
     align-self: start;
+  }
+
+  @media (max-width: 780px) {
+    .cv-category { position: static; top: auto; }
   }
 
   .cv-entries { display: flex; flex-direction: column; gap: 0; }
