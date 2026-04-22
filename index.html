@@ -257,11 +257,13 @@
   }
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-aside { position: static; top: auto; }
   }
   .about-aside {
     position: sticky;
     top: 120px;
+  }
+  @media (max-width: 900px) {
+    .about-aside { position: static !important; top: auto !important; }
   }
   .about-aside-inner {
     padding: 28px;
@@ -365,7 +367,7 @@
   }
 
   @media (max-width: 780px) {
-    .cv-category { position: static; top: auto; }
+    .cv-category { position: static !important; top: auto !important; }
   }
 
   .cv-entries { display: flex; flex-direction: column; gap: 0; }
