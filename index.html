@@ -187,7 +187,7 @@
   .hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 300;
-    font-size: clamp(54px, 10vw, 148px);
+    font-size: clamp(48px, 7.5vw, 112px);
     line-height: 0.95;
     letter-spacing: -0.04em;
     margin: 0 0 28px;
@@ -643,6 +643,95 @@
     opacity: 0.08;
   }
   @media (max-width: 1100px) { .hero-decor { display: none; } }
+
+  /* ── HERO PORTRAIT ────────────────────────────── */
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-text { min-width: 0; }
+
+  .hero-portrait {
+    position: relative;
+    justify-self: end;
+    width: 100%;
+    max-width: 420px;
+    animation: slideUp 1s ease 0.3s both;
+  }
+
+  .portrait-frame {
+    position: relative;
+    padding: 14px;
+    background: var(--paper-2);
+  }
+  .portrait-frame::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border: 1px solid var(--rule);
+    pointer-events: none;
+  }
+  .portrait-frame::after {
+    content: "";
+    position: absolute;
+    top: 24px; left: -20px;
+    width: 4px; height: calc(100% - 48px);
+    background: var(--accent);
+  }
+
+  .portrait-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(0.15) contrast(1.02);
+    transition: filter 0.6s ease;
+  }
+  .portrait-frame:hover img { filter: grayscale(0) contrast(1); }
+
+  .portrait-caption {
+    position: absolute;
+    bottom: -18px;
+    right: -8px;
+    background: var(--paper);
+    padding: 8px 18px;
+    border-left: 2px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .portrait-name {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .portrait-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .hero-portrait {
+      justify-self: start;
+      max-width: 280px;
+      order: -1;
+    }
+    .portrait-caption { font-size: 13px; }
+  }
 </style>
 </head>
 <body>
@@ -661,29 +750,34 @@
 
   <!-- ─── HERO ─── -->
   <section class="hero">
-    <svg class="hero-decor" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="0.5"/>
-      <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="0.5"/>
-      <circle cx="100" cy="100" r="45" fill="none" stroke="currentColor" stroke-width="0.5"/>
-      <path d="M 5 100 L 195 100" stroke="currentColor" stroke-width="0.5"/>
-      <path d="M 100 5 L 100 195" stroke="currentColor" stroke-width="0.5"/>
-      <text x="100" y="104" text-anchor="middle" font-family="Fraunces" font-size="8" fill="currentColor">AUZ</text>
-    </svg>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-meta">
+          <span>Penn State · Smeal College of Business</span>
+          <span class="dot"></span>
+          <span>Visiting @ Tuck, Dartmouth — Fall 2025</span>
+        </div>
 
-    <div class="hero-meta">
-      <span>Penn State · Smeal College of Business</span>
-      <span class="dot"></span>
-      <span>Visiting @ Tuck, Dartmouth — Fall 2025</span>
+        <h1>
+          <span class="word">Alexei</span>
+          <span class="word italic">Zhdanov</span>
+        </h1>
+
+        <p class="hero-tagline">
+          Professor of Finance working at the intersection of corporate finance, mergers &amp; acquisitions, empirical asset pricing, and derivatives.
+        </p>
+      </div>
+
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <img src="auz15.jpg" alt="Alexei Zhdanov" />
+          <div class="portrait-caption">
+            <span class="portrait-name">Alexei Zhdanov</span>
+            <span class="portrait-role">Professor of Finance</span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <h1>
-      <span class="word">Alexei</span>
-      <span class="word italic">Zhdanov</span>
-    </h1>
-
-    <p class="hero-tagline">
-      Professor of Finance working at the intersection of corporate finance, mergers &amp; acquisitions, empirical asset pricing, and derivatives.
-    </p>
 
     <div class="hero-grid">
       <div>
@@ -700,7 +794,7 @@
       </div>
       <div>
         <div class="stat-label">Editorial</div>
-        <div class="stat-value">Associate Editor, <em>JCF</em></div>
+        <div class="stat-value">Assoc. Editor, <em>JCF</em></div>
       </div>
     </div>
   </section>
@@ -718,8 +812,7 @@
             <li><span>Role</span><span>Professor</span></li>
             <li><span>School</span><span>Smeal · Penn State</span></li>
             <li><span>Ph.D.</span><span>Rochester, 2005</span></li>
-            <li><span>Editor</span><span>J. Corp. Finance</span></li>
-            <li><span>Based</span><span>State College, PA</span></li>
+            <li><span>Assoc. Editor</span><span>J. Corp. Finance</span></li>
           </ul>
         </div>
       </aside>
@@ -738,7 +831,7 @@
         <div class="journals">
           <div class="journals-label">Published in</div>
           <div class="journals-list">
-            <span>Journal of Finance</span><span>Journal of Financial Economics</span><span>Review of Financial Studies</span><span>JFQA</span><span>Management Science</span>
+            <span>Journal of Finance</span><span>Journal of Financial Economics</span><span>Review of Financial Studies</span><span>JFQA</span><span>Review of Finance</span><span>Management Science</span>
           </div>
         </div>
       </div>
@@ -770,7 +863,7 @@
         <div class="cv-category">Academic</div>
         <div class="cv-entries">
           <div class="cv-entry">
-            <div class="cv-year">2025</div>
+            <div class="cv-year">2025, Fall</div>
             <div class="cv-role">
               Visiting Professor of Finance
               <span class="inst">Tuck School of Business, Dartmouth College · Hanover, NH</span>
@@ -844,7 +937,7 @@
       </div>
     </div>
 
-    <a class="cv-download reveal" href="https://sites.psu.edu/auz15/files/2025/09/cv_Alexey_Zhdanov-0925.pdf" target="_blank" rel="noopener">
+    <a class="cv-download reveal" href="cv_Alexei_Zhdanov.pdf" target="_blank" rel="noopener">
       Full CV (PDF) <span class="arrow">↗</span>
     </a>
   </section>
@@ -855,15 +948,15 @@
     <h2 class="section-title reveal">Publications &amp; <em>working papers.</em></h2>
 
     <div class="research-tabs reveal">
-      <button class="research-tab active" data-tab="pubs">Published <span class="count">22</span></button>
-      <button class="research-tab" data-tab="wps">Working Papers <span class="count">04</span></button>
+      <button class="research-tab active" data-tab="pubs">Published <span class="count">21</span></button>
+      <button class="research-tab" data-tab="wps">Working Papers <span class="count">06</span></button>
     </div>
 
     <!-- PUBLICATIONS -->
     <div class="papers active" id="pubs">
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3607030" target="_blank" rel="noopener">
-        <div class="paper-num">— 22</div>
+        <div class="paper-num">— 21</div>
         <div class="paper-main">
           <h3 class="paper-title">Cheap Options Are Expensive</h3>
           <div class="paper-authors">with Alex Boulatov, Assaf Eisdorfer &amp; Amit Goyal</div>
@@ -873,9 +966,9 @@
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3072665" target="_blank" rel="noopener">
-        <div class="paper-num">— 21</div>
+        <div class="paper-num">— 20</div>
         <div class="paper-main">
-          <h3 class="paper-title">Venture Capital Investments, Mergers and Competition Laws around the World</h3>
+          <h3 class="paper-title">Venture Capital Investments and Merger and Acquisition Activity around the World</h3>
           <div class="paper-authors">with Gordon Phillips</div>
           <div class="paper-journal">Review of Corporate Finance Studies <span class="year">2024</span></div>
         </div>
@@ -883,9 +976,9 @@
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3714966" target="_blank" rel="noopener">
-        <div class="paper-num">— 20</div>
+        <div class="paper-num">— 19</div>
         <div class="paper-main">
-          <h3 class="paper-title">Takeover Protections and Stock Returns</h3>
+          <h3 class="paper-title">Takeover Protections and Asset Prices</h3>
           <div class="paper-authors">with Assaf Eisdorfer &amp; Erwan Morellec</div>
           <div class="paper-journal">Management Science <span class="year">2024</span></div>
         </div>
@@ -893,7 +986,7 @@
       </a>
 
       <a class="paper" href="https://sites.psu.edu/auz15/files/2019/03/MZ-March-2019-2izub8q.pdf" target="_blank" rel="noopener">
-        <div class="paper-num">— 19</div>
+        <div class="paper-num">— 18</div>
         <div class="paper-main">
           <h3 class="paper-title">Optimal Capital Structure with Imperfect Competition</h3>
           <div class="paper-authors">with Egor Matveyev</div>
@@ -903,7 +996,7 @@
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2876182" target="_blank" rel="noopener">
-        <div class="paper-num">— 18</div>
+        <div class="paper-num">— 17</div>
         <div class="paper-main">
           <h3 class="paper-title">Maturity Driven Mispricing of Options</h3>
           <div class="paper-authors">with Assaf Eisdorfer &amp; Ronnie Sadka</div>
@@ -913,19 +1006,19 @@
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2819652" target="_blank" rel="noopener">
-        <div class="paper-num">— 17</div>
+        <div class="paper-num">— 16</div>
         <div class="paper-main">
           <h3 class="paper-title">Does the Market Correctly Value Investment Options?</h3>
           <div class="paper-authors">with Evgeny Lyandres &amp; Egor Matveyev</div>
-          <div class="paper-journal">Review of Finance <span class="year">2020</span></div>
+          <div class="paper-journal">Review of Finance <span class="year">2021</span></div>
         </div>
         <span class="paper-tag lead">Lead article</span>
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2919354" target="_blank" rel="noopener">
-        <div class="paper-num">— 16</div>
+        <div class="paper-num">— 15</div>
         <div class="paper-main">
-          <h3 class="paper-title">Product Market Competition and Option Prices</h3>
+          <h3 class="paper-title">Product Market Competition and Industry Structure</h3>
           <div class="paper-authors">with Erwan Morellec</div>
           <div class="paper-journal">Review of Financial Studies <span class="year">2019</span></div>
         </div>
@@ -933,7 +1026,7 @@
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2860888" target="_blank" rel="noopener">
-        <div class="paper-num">— 15</div>
+        <div class="paper-num">— 14</div>
         <div class="paper-main">
           <h3 class="paper-title">Equity Misvaluation and Default Options</h3>
           <div class="paper-authors">with Assaf Eisdorfer &amp; Amit Goyal</div>
@@ -943,7 +1036,7 @@
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=2267611" target="_blank" rel="noopener">
-        <div class="paper-num">— 14</div>
+        <div class="paper-num">— 13</div>
         <div class="paper-main">
           <h3 class="paper-title">Distress Anomaly and Shareholder Risk: International Evidence</h3>
           <div class="paper-authors">with Assaf Eisdorfer &amp; Amit Goyal</div>
@@ -953,7 +1046,7 @@
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=2162896" target="_blank" rel="noopener">
-        <div class="paper-num">— 13</div>
+        <div class="paper-num">— 12</div>
         <div class="paper-main">
           <h3 class="paper-title">Financing Investment: The Choice between Public and Private Debt</h3>
           <div class="paper-authors">with Erwan Morellec &amp; Philip Valta</div>
@@ -963,17 +1056,17 @@
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=946240" target="_blank" rel="noopener">
-        <div class="paper-num">— 12</div>
+        <div class="paper-num">— 11</div>
         <div class="paper-main">
           <h3 class="paper-title">Investment Opportunities and Bankruptcy Prediction</h3>
           <div class="paper-authors">single-authored</div>
-          <div class="paper-journal">Journal of Financial Markets <span class="year">2014</span></div>
+          <div class="paper-journal">Journal of Financial Markets <span class="year">2013</span></div>
         </div>
         <span class="paper-tag">—</span>
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=2181152" target="_blank" rel="noopener">
-        <div class="paper-num">— 11</div>
+        <div class="paper-num">— 10</div>
         <div class="paper-main">
           <h3 class="paper-title">R&amp;D and the Incentives from Merger and Acquisition Activity</h3>
           <div class="paper-authors">with Gordon Phillips</div>
@@ -983,17 +1076,17 @@
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=884305" target="_blank" rel="noopener">
-        <div class="paper-num">— 10</div>
+        <div class="paper-num">— 09</div>
         <div class="paper-main">
           <h3 class="paper-title">Convertible Debt and Investment Timing</h3>
           <div class="paper-authors">with Evgeny Lyandres</div>
-          <div class="paper-journal">Journal of Corporate Finance <span class="year">2013</span></div>
+          <div class="paper-journal">Journal of Corporate Finance <span class="year">2014</span></div>
         </div>
         <span class="paper-tag">—</span>
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=1101562" target="_blank" rel="noopener">
-        <div class="paper-num">— 09</div>
+        <div class="paper-num">— 08</div>
         <div class="paper-main">
           <h3 class="paper-title">Real Options, Volatility, and Stock Returns</h3>
           <div class="paper-authors">with Gustavo Grullon &amp; Evgeny Lyandres</div>
@@ -1003,7 +1096,7 @@
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=891311" target="_blank" rel="noopener">
-        <div class="paper-num">— 08</div>
+        <div class="paper-num">— 07</div>
         <div class="paper-main">
           <h3 class="paper-title">A Theory of Strategic Mergers</h3>
           <div class="paper-authors">with Gennaro Bernile &amp; Evgeny Lyandres</div>
@@ -1013,7 +1106,7 @@
       </a>
 
       <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=932117" target="_blank" rel="noopener">
-        <div class="paper-num">— 07</div>
+        <div class="paper-num">— 06</div>
         <div class="paper-main">
           <h3 class="paper-title">A Theory of Merger-Driven IPOs</h3>
           <div class="paper-authors">with Evgeny Lyandres &amp; Jim Hsieh</div>
@@ -1023,7 +1116,7 @@
       </a>
 
       <a class="paper" href="http://ssrn.com/abstract=1106364" target="_blank" rel="noopener">
-        <div class="paper-num">— 06</div>
+        <div class="paper-num">— 05</div>
         <div class="paper-main">
           <h3 class="paper-title">Accelerated Investment in the Presence of Risky Debt</h3>
           <div class="paper-authors">with Evgeny Lyandres</div>
@@ -1033,7 +1126,7 @@
       </a>
 
       <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=934539" target="_blank" rel="noopener">
-        <div class="paper-num">— 05</div>
+        <div class="paper-num">— 04</div>
         <div class="paper-main">
           <h3 class="paper-title">Financing and Takeovers</h3>
           <div class="paper-authors">with Erwan Morellec</div>
@@ -1043,7 +1136,7 @@
       </a>
 
       <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=987924" target="_blank" rel="noopener">
-        <div class="paper-num">— 04</div>
+        <div class="paper-num">— 03</div>
         <div class="paper-main">
           <h3 class="paper-title">Earnings and Equity Valuation in the Biotech Industry: Theory and Evidence</h3>
           <div class="paper-authors">with Philip Joos</div>
@@ -1053,7 +1146,7 @@
       </a>
 
       <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=809508" target="_blank" rel="noopener">
-        <div class="paper-num">— 03</div>
+        <div class="paper-num">— 02</div>
         <div class="paper-main">
           <h3 class="paper-title">Competitive Equilibrium with Debt</h3>
           <div class="paper-authors">single-authored</div>
@@ -1063,7 +1156,7 @@
       </a>
 
       <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=281534" target="_blank" rel="noopener">
-        <div class="paper-num">— 02</div>
+        <div class="paper-num">— 01</div>
         <div class="paper-main">
           <h3 class="paper-title">The Dynamics of Mergers and Acquisitions</h3>
           <div class="paper-authors">with Erwan Morellec</div>
@@ -1077,18 +1170,27 @@
     <!-- WORKING PAPERS -->
     <div class="papers" id="wps">
 
+      <a class="paper" href="#" style="cursor: default;">
+        <div class="paper-num">— WP6</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Acquihires, Exit Options and Startup Financing</h3>
+          <div class="paper-authors">with Thomas Geelen, Sebastian Gryglewicz, Simon Mayer &amp; Erwan Morellec</div>
+        </div>
+        <span class="paper-tag">Draft coming soon</span>
+      </a>
+
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5422514" target="_blank" rel="noopener">
-        <div class="paper-num">— WP4</div>
+        <div class="paper-num">— WP5</div>
         <div class="paper-main">
           <h3 class="paper-title">A Tale of Two Anomalies: Value, Momentum, and Risk Sentiment</h3>
           <div class="paper-authors">with Christian Lundblad, Mihail Velikov &amp; Haowei Yuan</div>
-          <div class="paper-venues">Pennsylvania State University</div>
+          <div class="paper-venues">Pennsylvania State University · Dartmouth College · Eastern Finance Association</div>
         </div>
         <span class="paper-tag">Draft</span>
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4630093" target="_blank" rel="noopener">
-        <div class="paper-num">— WP3</div>
+        <div class="paper-num">— WP4</div>
         <div class="paper-main">
           <h3 class="paper-title">Short Interest and Investment</h3>
           <div class="paper-authors">with Alex Boulatov, Gustavo Grullon &amp; Yelena Larkin</div>
@@ -1098,7 +1200,7 @@
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4920166" target="_blank" rel="noopener">
-        <div class="paper-num">— WP2</div>
+        <div class="paper-num">— WP3</div>
         <div class="paper-main">
           <h3 class="paper-title">Reg SHO and Mispricing: The Role of Firm Characteristics</h3>
           <div class="paper-authors">with Alex Boulatov &amp; David Gempesaw</div>
@@ -1108,11 +1210,21 @@
       </a>
 
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5104440" target="_blank" rel="noopener">
-        <div class="paper-num">— WP1</div>
+        <div class="paper-num">— WP2</div>
         <div class="paper-main">
           <h3 class="paper-title">Mispriced Equity, Default Likelihood, and Credit Rating Accuracy</h3>
           <div class="paper-authors">with Samuel Bonsall &amp; Haowei Yuan</div>
           <div class="paper-venues">Pennsylvania State University</div>
+        </div>
+        <span class="paper-tag">Draft</span>
+      </a>
+
+      <a class="paper" href="#" target="_blank" rel="noopener">
+        <div class="paper-num">— WP1</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Misvaluation and Return Anomalies in Distress Stocks</h3>
+          <div class="paper-authors">with Assaf Eisdorfer &amp; Amit Goyal</div>
+          <div class="paper-venues">2014 AFA · Penn State · Emory · HKUST · Florida State · IDC Herzliya · NTU · NUS · UT Dallas · Virginia Tech · Warwick</div>
         </div>
         <span class="paper-tag">Draft</span>
       </a>
