@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alexei Zhdanov — Professor of Finance</title>
+<meta name="description" content="Alexei Zhdanov, Professor of Finance at Penn State University, Smeal College of Business. Research in corporate finance, M&A, asset pricing, and derivatives." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f5f1ea;
+    --paper-2: #ede7dc;
+    --ink: #1a1a1a;
+    --ink-soft: #2b2b2b;
+    --muted: #6b6258;
+    --rule: #d9d1c3;
+    --accent: #8a2a2b;        /* deep oxblood */
+    --accent-soft: #b85c3e;   /* warm terracotta */
+    --gold: #a6802a;
+    --navy: #1f2a44;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Paper-grain background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(138,42,43,0.03), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(31,42,68,0.03), transparent 50%);
+    mix-blend-mode: multiply;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── NAV ──────────────────────────────────────── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 241, 234, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, padding 0.3s;
+  }
+  .nav.scrolled { border-bottom-color: var(--rule); padding: 14px 48px; }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    font-style: italic;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links a {
+    position: relative;
+    padding: 4px 0;
+    color: var(--ink-soft);
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  @media (max-width: 780px) {
+    .nav { padding: 16px 20px; }
+    .nav.scrolled { padding: 12px 20px; }
+    .nav-links { gap: 18px; font-size: 11px; }
+    .nav-logo { font-size: 17px; }
+  }
+
+  /* ── LAYOUT ───────────────────────────────────── */
+  main { position: relative; z-index: 3; }
+  section { padding: 120px 48px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 780px) { section { padding: 80px 20px; } }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px; height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 56px;
+    color: var(--ink);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 300;
+  }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 140px;
+    padding-bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;
+    position: relative;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .hero-meta .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(54px, 10vw, 148px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin: 0 0 28px;
+    color: var(--ink);
+  }
+  .hero h1 .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero h1 .and {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  .hero-tagline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 780px;
+    line-height: 1.4;
+    margin: 0 0 48px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+    border-top: 1px solid var(--rule);
+    padding-top: 32px;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .stat-value em { font-style: italic; color: var(--accent); }
+  @media (max-width: 780px) {
+    .hero-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  }
+
+  /* ── ABOUT ────────────────────────────────────── */
+  .about {
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .about-aside {
+    position: sticky;
+    top: 120px;
+  }
+  .about-aside-inner {
+    padding: 28px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--accent);
+  }
+  .about-aside h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .about-aside ul {
+    list-style: none;
+    padding: 0; margin: 0;
+    font-size: 14px;
+  }
+  .about-aside li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .about-aside li:last-child { border-bottom: none; }
+  .about-aside li span:first-child { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; }
+  .about-aside li span:last-child { text-align: right; font-weight: 500; }
+
+  .about-body p {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .about-body p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 82px;
+    float: left;
+    line-height: 0.85;
+    padding: 8px 12px 0 0;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .about-body .journals {
+    margin-top: 40px;
+    padding: 28px 32px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .journals-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .journals-list {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .journals-list span {
+    display: inline-block;
+    margin-right: 18px;
+    position: relative;
+  }
+  .journals-list span:not(:last-child)::after {
+    content: "·";
+    margin-left: 18px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── CV ───────────────────────────────────────── */
+  .cv {
+    background: linear-gradient(180deg, transparent 0%, rgba(237, 231, 220, 0.5) 50%, transparent 100%);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .cv-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 780px) { .cv-grid { grid-template-columns: 1fr; gap: 16px; } }
+
+  .cv-category {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+
+  .cv-entries { display: flex; flex-direction: column; gap: 0; }
+  .cv-entry {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    align-items: baseline;
+    transition: padding 0.3s;
+  }
+  .cv-entry:hover { padding-left: 12px; }
+  .cv-entry:last-child { border-bottom: none; }
+  .cv-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .cv-role {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .cv-role .inst {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.01em;
+  }
+  @media (max-width: 780px) {
+    .cv-entry { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; }
+    .cv-entry:hover { padding-left: 0; }
+  }
+
+  .cv-category-block + .cv-category-block { margin-top: 72px; }
+
+  .cv-download {
+    margin-top: 56px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 26px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border: 1px solid var(--ink);
+  }
+  .cv-download:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+  .cv-download .arrow { transition: transform 0.3s; }
+  .cv-download:hover .arrow { transform: translate(3px, -3px); }
+
+  /* ── RESEARCH ─────────────────────────────────── */
+  .research-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 48px;
+  }
+  .research-tab {
+    padding: 14px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+  .research-tab:hover { color: var(--ink); }
+  .research-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .research-tab .count {
+    margin-left: 8px;
+    opacity: 0.6;
+    font-size: 10px;
+  }
+
+  .papers { display: none; }
+  .papers.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .paper {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 32px;
+    align-items: start;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .paper:hover { padding-left: 12px; }
+  .paper:last-child { border-bottom: none; }
+
+  .paper-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    padding-top: 6px;
+  }
+  .paper-main { min-width: 0; }
+  .paper-title {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 8px;
+    transition: color 0.2s;
+  }
+  .paper-title a { transition: color 0.2s; }
+  .paper:hover .paper-title { color: var(--accent); }
+  .paper-authors {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .paper-journal {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .paper-journal .year { color: var(--accent); font-weight: 500; font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 12px; margin-left: 6px; letter-spacing: 0.05em; }
+
+  .paper-venues {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .paper-venues::before { content: "presented at "; font-style: italic; }
+
+  .paper-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    white-space: nowrap;
+    align-self: start;
+    margin-top: 4px;
+  }
+  .paper-tag.lead { border-color: var(--gold); color: var(--gold); }
+  .paper-tag.forthcoming { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 780px) {
+    .paper { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; }
+    .paper:hover { padding-left: 0; }
+    .paper-num { font-size: 11px; padding-top: 0; }
+    .paper-tag { justify-self: start; margin-top: 10px; }
+  }
+
+  .ssrn-link {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: var(--paper-2);
+    border: 1px dashed var(--rule);
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .ssrn-link a { color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ── CONTACT / FOOTER ─────────────────────────── */
+  .contact {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 100px 48px 60px;
+    position: relative;
+    z-index: 3;
+  }
+  .contact-inner { max-width: 1280px; margin: 0 auto; }
+
+  .contact h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 56px;
+  }
+  .contact h2 em { font-style: italic; color: var(--accent-soft); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-bottom: 80px;
+  }
+  @media (max-width: 780px) { .contact-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .contact-block h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin: 0 0 14px;
+  }
+  .contact-block p {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--paper);
+    opacity: 0.9;
+  }
+  .contact-block a:hover { color: var(--accent-soft); }
+
+  .footer-line {
+    border-top: 1px solid rgba(245, 241, 234, 0.15);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(245, 241, 234, 0.6);
+  }
+
+  /* ── REVEAL ANIMATIONS ────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Hero entrance stagger */
+  .hero-meta { animation: slideUp 0.8s ease forwards; opacity: 0; animation-delay: 0.1s; }
+  .hero h1 .word { display: inline-block; animation: slideUp 1s ease forwards; opacity: 0; }
+  .hero h1 .word:nth-child(1) { animation-delay: 0.2s; }
+  .hero h1 .word:nth-child(2) { animation-delay: 0.35s; }
+  .hero-tagline { animation: slideUp 0.8s ease forwards; opacity: 0; animation-delay: 0.55s; }
+  .hero-grid { animation: slideUp 0.8s ease forwards; opacity: 0; animation-delay: 0.75s; }
+
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(30px); }
+  }
+
+  /* Decorative element */
+  .hero-decor {
+    position: absolute;
+    right: 48px;
+    top: 200px;
+    width: 280px;
+    height: 280px;
+    pointer-events: none;
+    opacity: 0.08;
+  }
+  @media (max-width: 1100px) { .hero-decor { display: none; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-logo">Alexei <span>Zhdanov</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#cv">CV</a>
+    <a href="#research">Research</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <svg class="hero-decor" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="45" fill="none" stroke="currentColor" stroke-width="0.5"/>
+      <path d="M 5 100 L 195 100" stroke="currentColor" stroke-width="0.5"/>
+      <path d="M 100 5 L 100 195" stroke="currentColor" stroke-width="0.5"/>
+      <text x="100" y="104" text-anchor="middle" font-family="Fraunces" font-size="8" fill="currentColor">AUZ</text>
+    </svg>
+
+    <div class="hero-meta">
+      <span>Penn State · Smeal College of Business</span>
+      <span class="dot"></span>
+      <span>Visiting @ Tuck, Dartmouth — Fall 2025</span>
+    </div>
+
+    <h1>
+      <span class="word">Alexei</span>
+      <span class="word italic">Zhdanov</span>
+    </h1>
+
+    <p class="hero-tagline">
+      Professor of Finance working at the intersection of corporate finance, mergers &amp; acquisitions, empirical asset pricing, and derivatives.
+    </p>
+
+    <div class="hero-grid">
+      <div>
+        <div class="stat-label">Field</div>
+        <div class="stat-value"><em>Finance</em></div>
+      </div>
+      <div>
+        <div class="stat-label">Institution</div>
+        <div class="stat-value">Smeal College of Business</div>
+      </div>
+      <div>
+        <div class="stat-label">Doctorate</div>
+        <div class="stat-value">University of Rochester, <em>2005</em></div>
+      </div>
+      <div>
+        <div class="stat-label">Editorial</div>
+        <div class="stat-value">Associate Editor, <em>JCF</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="about" id="about">
+    <div class="eyebrow reveal">01 — About</div>
+    <h2 class="section-title reveal">A career spanning <em>theory,</em><br/>data, and markets.</h2>
+
+    <div class="about-grid">
+      <aside class="about-aside reveal">
+        <div class="about-aside-inner">
+          <h3>At a glance</h3>
+          <ul>
+            <li><span>Role</span><span>Professor</span></li>
+            <li><span>School</span><span>Smeal · Penn State</span></li>
+            <li><span>Ph.D.</span><span>Rochester, 2005</span></li>
+            <li><span>Editor</span><span>J. Corp. Finance</span></li>
+            <li><span>Based</span><span>State College, PA</span></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="about-body reveal">
+        <p>
+          Alexei Zhdanov is a Professor of Finance at Penn State University's Smeal College of Business. He holds a Ph.D. in finance from the University of Rochester's William E. Simon School of Business, and previously held faculty positions at the Swiss Finance Institute, the University of Lausanne, and George Mason University.
+        </p>
+        <p>
+          His industry experience includes research and portfolio management at PanAgora Asset Management in Boston — a top-ranked quantitative investment firm — a senior economist role at Cornerstone Research in New York, and several years in commercial banking at a large international bank in Russia.
+        </p>
+        <p>
+          His work examines how real options, strategic interaction, and information frictions shape corporate decisions and asset prices — from the dynamics of mergers and acquisitions to the pricing of equity and derivative claims.
+        </p>
+
+        <div class="journals">
+          <div class="journals-label">Published in</div>
+          <div class="journals-list">
+            <span>Journal of Finance</span><span>Journal of Financial Economics</span><span>Review of Financial Studies</span><span>JFQA</span><span>Management Science</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CV ─── -->
+  <section class="cv" id="cv">
+    <div class="eyebrow reveal">02 — Curriculum Vitae</div>
+    <h2 class="section-title reveal">Education &amp; <em>experience.</em></h2>
+
+    <div class="cv-category-block reveal">
+      <div class="cv-grid">
+        <div class="cv-category">Education</div>
+        <div class="cv-entries">
+          <div class="cv-entry">
+            <div class="cv-year">2000 — 2005</div>
+            <div class="cv-role">
+              Ph.D. in Finance
+              <span class="inst">University of Rochester · William E. Simon School of Business Administration · Rochester, NY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-category-block reveal">
+      <div class="cv-grid">
+        <div class="cv-category">Academic</div>
+        <div class="cv-entries">
+          <div class="cv-entry">
+            <div class="cv-year">2025</div>
+            <div class="cv-role">
+              Visiting Professor of Finance
+              <span class="inst">Tuck School of Business, Dartmouth College · Hanover, NH</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-year">2023 —</div>
+            <div class="cv-role">
+              Professor of Finance
+              <span class="inst">Penn State University · State College, PA</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-year">2018 — 2023</div>
+            <div class="cv-role">
+              Associate Professor of Finance
+              <span class="inst">Penn State University · State College, PA</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-year">2015 — 2018</div>
+            <div class="cv-role">
+              Assistant Professor of Finance (tenure-track)
+              <span class="inst">Penn State University · State College, PA</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-year">2007 — 2013</div>
+            <div class="cv-role">
+              Assistant Professor of Finance (tenure-track)
+              <span class="inst">Swiss Finance Institute &amp; University of Lausanne · Switzerland — SFI Chair holder</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-year">2005 — 2007</div>
+            <div class="cv-role">
+              Assistant Professor of Finance (tenure-track)
+              <span class="inst">School of Management, George Mason University · Fairfax, VA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-category-block reveal">
+      <div class="cv-grid">
+        <div class="cv-category">Industry</div>
+        <div class="cv-entries">
+          <div class="cv-entry">
+            <div class="cv-year">2013 — 2015</div>
+            <div class="cv-role">
+              Senior Researcher / Portfolio Manager
+              <span class="inst">PanAgora Asset Management · Boston, MA</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-year">2009 — 2010</div>
+            <div class="cv-role">
+              Senior Economist
+              <span class="inst">Cornerstone Research · New York, NY (on leave from Lausanne)</span>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-year">1998 — 2000</div>
+            <div class="cv-role">
+              Relationship Manager
+              <span class="inst">Calyon (formerly Crédit Lyonnais) · Saint Petersburg, Russia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a class="cv-download reveal" href="https://sites.psu.edu/auz15/files/2025/09/cv_Alexey_Zhdanov-0925.pdf" target="_blank" rel="noopener">
+      Full CV (PDF) <span class="arrow">↗</span>
+    </a>
+  </section>
+
+  <!-- ─── RESEARCH ─── -->
+  <section class="research" id="research">
+    <div class="eyebrow reveal">03 — Research</div>
+    <h2 class="section-title reveal">Publications &amp; <em>working papers.</em></h2>
+
+    <div class="research-tabs reveal">
+      <button class="research-tab active" data-tab="pubs">Published <span class="count">22</span></button>
+      <button class="research-tab" data-tab="wps">Working Papers <span class="count">04</span></button>
+    </div>
+
+    <!-- PUBLICATIONS -->
+    <div class="papers active" id="pubs">
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3607030" target="_blank" rel="noopener">
+        <div class="paper-num">— 22</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Cheap Options Are Expensive</h3>
+          <div class="paper-authors">with Alex Boulatov, Assaf Eisdorfer &amp; Amit Goyal</div>
+          <div class="paper-journal">Review of Asset Pricing Studies <span class="year">forthcoming</span></div>
+        </div>
+        <span class="paper-tag forthcoming">Forthcoming</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3072665" target="_blank" rel="noopener">
+        <div class="paper-num">— 21</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Venture Capital Investments, Mergers and Competition Laws around the World</h3>
+          <div class="paper-authors">with Gordon Phillips</div>
+          <div class="paper-journal">Review of Corporate Finance Studies <span class="year">2024</span></div>
+        </div>
+        <span class="paper-tag">Vol. 13</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3714966" target="_blank" rel="noopener">
+        <div class="paper-num">— 20</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Takeover Protections and Stock Returns</h3>
+          <div class="paper-authors">with Assaf Eisdorfer &amp; Erwan Morellec</div>
+          <div class="paper-journal">Management Science <span class="year">2024</span></div>
+        </div>
+        <span class="paper-tag">Vol. 70</span>
+      </a>
+
+      <a class="paper" href="https://sites.psu.edu/auz15/files/2019/03/MZ-March-2019-2izub8q.pdf" target="_blank" rel="noopener">
+        <div class="paper-num">— 19</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Optimal Capital Structure with Imperfect Competition</h3>
+          <div class="paper-authors">with Egor Matveyev</div>
+          <div class="paper-journal">Review of Corporate Finance Studies <span class="year">2022</span></div>
+        </div>
+        <span class="paper-tag">Vol. 11</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2876182" target="_blank" rel="noopener">
+        <div class="paper-num">— 18</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Maturity Driven Mispricing of Options</h3>
+          <div class="paper-authors">with Assaf Eisdorfer &amp; Ronnie Sadka</div>
+          <div class="paper-journal">Journal of Financial and Quantitative Analysis <span class="year">2022</span></div>
+        </div>
+        <span class="paper-tag">Vol. 57</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2819652" target="_blank" rel="noopener">
+        <div class="paper-num">— 17</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Does the Market Correctly Value Investment Options?</h3>
+          <div class="paper-authors">with Evgeny Lyandres &amp; Egor Matveyev</div>
+          <div class="paper-journal">Review of Finance <span class="year">2020</span></div>
+        </div>
+        <span class="paper-tag lead">Lead article</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2919354" target="_blank" rel="noopener">
+        <div class="paper-num">— 16</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Product Market Competition and Option Prices</h3>
+          <div class="paper-authors">with Erwan Morellec</div>
+          <div class="paper-journal">Review of Financial Studies <span class="year">2019</span></div>
+        </div>
+        <span class="paper-tag">Vol. 32</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2860888" target="_blank" rel="noopener">
+        <div class="paper-num">— 15</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Equity Misvaluation and Default Options</h3>
+          <div class="paper-authors">with Assaf Eisdorfer &amp; Amit Goyal</div>
+          <div class="paper-journal">Journal of Finance <span class="year">2019</span></div>
+        </div>
+        <span class="paper-tag">Vol. 74</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=2267611" target="_blank" rel="noopener">
+        <div class="paper-num">— 14</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Distress Anomaly and Shareholder Risk: International Evidence</h3>
+          <div class="paper-authors">with Assaf Eisdorfer &amp; Amit Goyal</div>
+          <div class="paper-journal">Financial Management <span class="year">2018</span></div>
+        </div>
+        <span class="paper-tag">Vol. 47</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=2162896" target="_blank" rel="noopener">
+        <div class="paper-num">— 13</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Financing Investment: The Choice between Public and Private Debt</h3>
+          <div class="paper-authors">with Erwan Morellec &amp; Philip Valta</div>
+          <div class="paper-journal">Management Science <span class="year">2015</span></div>
+        </div>
+        <span class="paper-tag">Vol. 61</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=946240" target="_blank" rel="noopener">
+        <div class="paper-num">— 12</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Investment Opportunities and Bankruptcy Prediction</h3>
+          <div class="paper-authors">single-authored</div>
+          <div class="paper-journal">Journal of Financial Markets <span class="year">2014</span></div>
+        </div>
+        <span class="paper-tag">—</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=2181152" target="_blank" rel="noopener">
+        <div class="paper-num">— 11</div>
+        <div class="paper-main">
+          <h3 class="paper-title">R&amp;D and the Incentives from Merger and Acquisition Activity</h3>
+          <div class="paper-authors">with Gordon Phillips</div>
+          <div class="paper-journal">Review of Financial Studies <span class="year">2013</span></div>
+        </div>
+        <span class="paper-tag">Vol. 26</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=884305" target="_blank" rel="noopener">
+        <div class="paper-num">— 10</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Convertible Debt and Investment Timing</h3>
+          <div class="paper-authors">with Evgeny Lyandres</div>
+          <div class="paper-journal">Journal of Corporate Finance <span class="year">2013</span></div>
+        </div>
+        <span class="paper-tag">—</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=1101562" target="_blank" rel="noopener">
+        <div class="paper-num">— 09</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Real Options, Volatility, and Stock Returns</h3>
+          <div class="paper-authors">with Gustavo Grullon &amp; Evgeny Lyandres</div>
+          <div class="paper-journal">Journal of Finance <span class="year">2012</span></div>
+        </div>
+        <span class="paper-tag">Vol. 67</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=891311" target="_blank" rel="noopener">
+        <div class="paper-num">— 08</div>
+        <div class="paper-main">
+          <h3 class="paper-title">A Theory of Strategic Mergers</h3>
+          <div class="paper-authors">with Gennaro Bernile &amp; Evgeny Lyandres</div>
+          <div class="paper-journal">Review of Finance <span class="year">2012</span></div>
+        </div>
+        <span class="paper-tag">Vol. 16</span>
+      </a>
+
+      <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=932117" target="_blank" rel="noopener">
+        <div class="paper-num">— 07</div>
+        <div class="paper-main">
+          <h3 class="paper-title">A Theory of Merger-Driven IPOs</h3>
+          <div class="paper-authors">with Evgeny Lyandres &amp; Jim Hsieh</div>
+          <div class="paper-journal">Journal of Financial and Quantitative Analysis <span class="year">2011</span></div>
+        </div>
+        <span class="paper-tag">Vol. 46</span>
+      </a>
+
+      <a class="paper" href="http://ssrn.com/abstract=1106364" target="_blank" rel="noopener">
+        <div class="paper-num">— 06</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Accelerated Investment in the Presence of Risky Debt</h3>
+          <div class="paper-authors">with Evgeny Lyandres</div>
+          <div class="paper-journal">Journal of Banking and Finance <span class="year">2010</span></div>
+        </div>
+        <span class="paper-tag">Vol. 34</span>
+      </a>
+
+      <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=934539" target="_blank" rel="noopener">
+        <div class="paper-num">— 05</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Financing and Takeovers</h3>
+          <div class="paper-authors">with Erwan Morellec</div>
+          <div class="paper-journal">Journal of Financial Economics <span class="year">2008</span></div>
+        </div>
+        <span class="paper-tag">Vol. 87</span>
+      </a>
+
+      <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=987924" target="_blank" rel="noopener">
+        <div class="paper-num">— 04</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Earnings and Equity Valuation in the Biotech Industry: Theory and Evidence</h3>
+          <div class="paper-authors">with Philip Joos</div>
+          <div class="paper-journal">Financial Management <span class="year">2008</span></div>
+        </div>
+        <span class="paper-tag">Vol. 37</span>
+      </a>
+
+      <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=809508" target="_blank" rel="noopener">
+        <div class="paper-num">— 03</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Competitive Equilibrium with Debt</h3>
+          <div class="paper-authors">single-authored</div>
+          <div class="paper-journal">Journal of Financial and Quantitative Analysis <span class="year">2007</span></div>
+        </div>
+        <span class="paper-tag">Vol. 42</span>
+      </a>
+
+      <a class="paper" href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=281534" target="_blank" rel="noopener">
+        <div class="paper-num">— 02</div>
+        <div class="paper-main">
+          <h3 class="paper-title">The Dynamics of Mergers and Acquisitions</h3>
+          <div class="paper-authors">with Erwan Morellec</div>
+          <div class="paper-journal">Journal of Financial Economics <span class="year">2005</span></div>
+        </div>
+        <span class="paper-tag">Vol. 77</span>
+      </a>
+
+    </div>
+
+    <!-- WORKING PAPERS -->
+    <div class="papers" id="wps">
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5422514" target="_blank" rel="noopener">
+        <div class="paper-num">— WP4</div>
+        <div class="paper-main">
+          <h3 class="paper-title">A Tale of Two Anomalies: Value, Momentum, and Risk Sentiment</h3>
+          <div class="paper-authors">with Christian Lundblad, Mihail Velikov &amp; Haowei Yuan</div>
+          <div class="paper-venues">Pennsylvania State University</div>
+        </div>
+        <span class="paper-tag">Draft</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4630093" target="_blank" rel="noopener">
+        <div class="paper-num">— WP3</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Short Interest and Investment</h3>
+          <div class="paper-authors">with Alex Boulatov, Gustavo Grullon &amp; Yelena Larkin</div>
+          <div class="paper-venues">Rice University · Texas A&amp;M University · 2020 EFA</div>
+        </div>
+        <span class="paper-tag">Draft</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4920166" target="_blank" rel="noopener">
+        <div class="paper-num">— WP2</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Reg SHO and Mispricing: The Role of Firm Characteristics</h3>
+          <div class="paper-authors">with Alex Boulatov &amp; David Gempesaw</div>
+          <div class="paper-venues">2022 CMU-Pitt-PSU Conference · 34th Conference on Financial Economics and Accounting</div>
+        </div>
+        <span class="paper-tag">Draft</span>
+      </a>
+
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5104440" target="_blank" rel="noopener">
+        <div class="paper-num">— WP1</div>
+        <div class="paper-main">
+          <h3 class="paper-title">Mispriced Equity, Default Likelihood, and Credit Rating Accuracy</h3>
+          <div class="paper-authors">with Samuel Bonsall &amp; Haowei Yuan</div>
+          <div class="paper-venues">Pennsylvania State University</div>
+        </div>
+        <span class="paper-tag">Draft</span>
+      </a>
+
+    </div>
+
+    <div class="ssrn-link reveal">
+      <span>All papers are also archived at SSRN.</span>
+      <a href="http://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=342372" target="_blank" rel="noopener">View full author page ↗</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── CONTACT ─── -->
+<footer class="contact" id="contact">
+  <div class="contact-inner">
+    <h2>Get in <em>touch.</em></h2>
+
+    <div class="contact-grid">
+      <div class="contact-block">
+        <h4>Office</h4>
+        <p>Smeal College of Business<br/>Penn State University<br/>University Park, PA</p>
+      </div>
+      <div class="contact-block">
+        <h4>Directory</h4>
+        <p><a href="https://directory.smeal.psu.edu/auz15" target="_blank" rel="noopener">directory.smeal.psu.edu/auz15 ↗</a></p>
+      </div>
+      <div class="contact-block">
+        <h4>Research</h4>
+        <p><a href="http://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=342372" target="_blank" rel="noopener">SSRN author page ↗</a></p>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>© 2026 · Alexei Zhdanov</span>
+      <span>Penn State · Smeal College of Business</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll shadow
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Research tabs
+  const tabs = document.querySelectorAll('.research-tab');
+  const panels = document.querySelectorAll('.papers');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
